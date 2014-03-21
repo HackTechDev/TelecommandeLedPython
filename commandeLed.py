@@ -14,7 +14,15 @@ def setCheckButtonText():
         varLabel.set("ETEINDRE")
         ser.write(bytes('E'))
  
-ser = serial.Serial('/dev/ttyACM0', 38400)
+locations=['/dev/ttyACM0', '/dev/ttyUSB0','/dev/ttyUSB1','/dev/ttyUSB2','/dev/ttyUSB3',
+'/dev/ttyS0','/dev/ttyS1','/dev/ttyS2','/dev/ttyS3']
+
+for device in locations:
+    try:
+        ser = serial.Serial(device, 38400)
+        print "Connexion sur", device
+    except:
+        print "Echec de connexion sur", device
 
 print("Reinitialiser Arduino")
 time.sleep(3)
