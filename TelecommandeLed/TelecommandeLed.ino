@@ -1,28 +1,30 @@
+/*
+
+*/
+
 int led = 13;
 int incomingByte = 0;
  
 void setup() {
     pinMode(led, OUTPUT);
      
-    //Setup Serial Port with baud rate of 9600
-    Serial.begin(9600);
-    Serial.println("Press H to turn LED ON");
-    Serial.println("Press L to turn LED OFF");
+    Serial.begin(38400);
+    Serial.println("Appuyer sur A pour ALLUMER la DEL");
+    Serial.println("Appuyer sur E pour ETEINDRE la DEL");
 }
  
 void loop() {
     if (Serial.available() > 0) {
-        // read the incoming byte:
         incomingByte = Serial.read();
      
-        if(incomingByte == 'H'){
+        if(incomingByte == 'A'){
             digitalWrite(led, HIGH);
-            Serial.println("LED ON");
-        }else if(incomingByte == 'L'){
+            Serial.println("ALLUMER");
+        }else if(incomingByte == 'E'){
             digitalWrite(led, LOW);
-            Serial.println("LED OFF");
+            Serial.println("ETEINDRE");
         }else{
-            Serial.println("invalid!");
+            Serial.println("Invalide !");
         }
        
     }

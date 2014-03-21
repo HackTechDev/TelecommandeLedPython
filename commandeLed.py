@@ -8,16 +8,17 @@ def quit():
  
 def setCheckButtonText():
     if varCheckButton.get():
-        varLabel.set("LED ON")
-        ser.write(bytes('H'))
+        varLabel.set("ALLUMER")
+        ser.write(bytes('A'))
     else:
-        varLabel.set("LED OFF")
-        ser.write(bytes('L'))
+        varLabel.set("ETEINDRE")
+        ser.write(bytes('E'))
  
-ser = serial.Serial('/dev/ttyACM0', 9600)
-print("Reset Arduino")
+ser = serial.Serial('/dev/ttyACM0', 38400)
+
+print("Reinitialiser Arduino")
 time.sleep(3)
-ser.write(bytes('L'))
+ser.write(bytes('E'))
  
 tkTop = Tkinter.Tk()
 tkTop.geometry('300x200')
@@ -29,14 +30,14 @@ tkLabel.pack()
 varCheckButton = Tkinter.IntVar()
 tkCheckButton = Tkinter.Checkbutton(
     tkTop,
-    text="Control Arduino LED",
+    text="Controle des DELs Arduino",
     variable=varCheckButton,
     command=setCheckButtonText)
 tkCheckButton.pack(anchor=Tkinter.CENTER)
  
 tkButtonQuit = Tkinter.Button(
     tkTop,
-    text="Quit",
+    text="Quitter",
     command=quit)
 tkButtonQuit.pack()
  
